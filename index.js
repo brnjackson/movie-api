@@ -10,7 +10,6 @@ app.use(express.json())
 app.get('/movies', (request, response) => {
   return response.send({ movies })
 })
-//
 
 app.get('/movies/:title', (request, response) => {
   // eslint-disable-next-line max-len
