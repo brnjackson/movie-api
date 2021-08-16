@@ -27,6 +27,20 @@ app.get('/movies/director/:directors', (request, response) => {
   return response.send(moviesDirectors)
 })
 
+app.get('/movies/:titleOrDirector', (req, res) => {
+  let checkStr = req.params.titleOrDirector.toLowerCase()
+
+  const moviesFiltered = movies.filter((movie) =>
+  movie.title.toLowerCase().includes(checkStr) || movie.directors.some((director) =>
+  director.toLowerCase().includes(checkStr)))
+
+  if (!moviesFiltered.length) {
+    return res.sendStatus(404)
+  }
+
+  return res.send(moviesFiltered)
+})
+
 
 app.post('/movies', (request, response) => {
   // eslint-disable-next-line no-console
